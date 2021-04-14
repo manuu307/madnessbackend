@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var expressValidator = require('express-validator');
+// var expressValidator = require('express-validator');
 var flash = require('express-flash');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -30,14 +30,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({ 
-  secret: '123456cat',
+  secret: 'q123eqad',
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
 }))
 
 app.use(flash());
-app.use(expressValidator());
+// app.use(expressValidator());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var connection  = require('../database/db');
-
+const {validationResult } = require('express-validator');
 //display login page
 router.get('/login', function(req, res, next){    
 // render to views/user/add.ejs
@@ -47,7 +47,7 @@ router.post('/post-register', function(req, res, next){
 req.assert('name', 'Name is required').notEmpty()           //Validate name
 req.assert('password', 'Password is required').notEmpty()   //Validate password
 req.assert('email', 'A valid email is required').isEmail()  //Validate email
-var errors = req.validationErrors()
+var errors = req.validationResult(req).throw();
 if( !errors ) {   //No errors were found.  Passed Validation!
 var user = {
 name: req.sanitize('name').escape().trim(),
